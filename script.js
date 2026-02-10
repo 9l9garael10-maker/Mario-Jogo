@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const mario = document.querySelector('.mario');
     const pipe = document.querySelector('.pipe');
+    const clouds = document.querySelector('.clouds');
     let gameOver = false;
 
     const jump = () => {
@@ -22,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const loop = setInterval(() => {
+
+        console.log('Loop');
         if (gameOver) return;
 
         const pipePosition = pipe.offsetLeft;
@@ -42,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Para o pipe
             pipe.style.animation = 'none';
             pipe.style.left = pipePosition + 'px';
+            
+            // Para as nuvens - captura a posição atual e congela lá
+            const cloudsRight = window.getComputedStyle(clouds).right;
+            clouds.style.animation = 'none';
+            clouds.style.right = cloudsRight;
             
             // Muda para imagem de game over
             mario.src = './img/game-over.png';
